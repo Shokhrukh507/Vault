@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  grafana:
+  vault:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,7 +32,7 @@ jobs:
         sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
     - name: Create Namespace
-      run: kubectl create ns Vault
+      run: kubectl create ns vault
 
     - name: Install Helm
       run: |
@@ -40,20 +40,20 @@ jobs:
         chmod +x get_helm.sh
         ./get_helm.sh
     
-    - name: Clone Grafana
+    - name: Clone Vault
       uses: GuillaumeFalourd/clone-github-repo-action@v2.3
       with:
         depth: 1
         branch: 'main'
         owner: 'Shokhrukh507'
-        repository: 'Vault'
+        repository: 'vault'
     
     - name: Access cloned repo
       run: |
-         cd Vault
+         cd vault
          ls -la
 
     - name: Deploy Helm Chart
       run: |
         helm repo add hashicorp https://helm.releases.hashicorp.com
-        helm install my-vault vault/vault -f values.yaml -n Vault
+        helm install my-vault vault/vault -f values.yaml -n vault
