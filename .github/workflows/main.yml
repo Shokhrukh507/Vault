@@ -55,5 +55,5 @@ jobs:
 
     - name: Deploy Helm Chart
       run: |
-        helm repo add hashicorp https://helm.releases.hashicorp.com
-        helm install my-vault vault/vault -f values.yaml -n vault
+         helm repo add hashicorp https://helm.releases.hashicorp.com
+         helm install my-vault vault/vault -f values.yaml -n vault
